@@ -1,8 +1,8 @@
 # Delcaring and initializing the variables of different types
 Name = "John Doe" # Data type is string
 Age = 28 # An integer
-Skills = ["Python", "SQL", "Power BI"] # Data type is list
-Education = ("BSc Computer Science", 2020) # Data type is tuple
+Skills = ["Python", "SQL", "Power BI"] # Data type is list which can hold different data types
+Education = ("BSc Computer Science", 2020) # Data type is tuple which can hold different data types
 ContactDetails = {"email": "johndoe@jd.com", "phone": "022 123 456"} # Data type is dictionary 
 Certifications = {"Azure", "AWS", "Azure"} # Data type is set - Final effective value will be {"Azure", "AWS"}
 
