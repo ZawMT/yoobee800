@@ -4,7 +4,7 @@ Age = 28 # An integer
 Skills = ["Python", "SQL", "Power BI"] # Data type is list
 Education = ("BSc Computer Science", 2020) # Data type is tuple
 ContactDetails = {"email": "johndoe@jd.com", "phone": "022 123 456"} # Data type is dictionary 
-Certifications = {"Azure", "AWS", "Azure"} # Data type is set
+Certifications = {"Azure", "AWS", "Azure"} # Data type is set - Final effective value will be {"Azure", "AWS"}
 
 # Printing the variables in a table
 print("Component           |   Data Type   |   Example")
