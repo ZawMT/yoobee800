@@ -32,8 +32,8 @@ def get_factorial(num):
         return "1"
     factorial = 1
     while num > 1:
-        factorial = factorial * num
-        num = num - 1
+        factorial = factorial * num #Start with the number itself
+        num = num - 1 #Next number to multiply is reduced by 1
     return f"{factorial}" 
 
 
