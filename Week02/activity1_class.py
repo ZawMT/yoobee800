@@ -17,22 +17,20 @@ class TestMath:
         if lst_resulted is None:
             self.reset()
             lst_resulted = self.num * [0]
+        else:
+            self.num = self.num - 1
             
         if self.num <= 0:
-            self.num = self.num - 1
             return lst_resulted
         elif self.num == 1:
-            self.num = self.num - 1
             lst_resulted[0] = 0
             return lst_resulted
         elif self.num == 2:
-            self.num = self.num - 1
             lst_resulted[0], lst_resulted[1] = 0, 1
             return lst_resulted 
         else:
             if lst_resulted[self.num-1] == 0:
                 self.get_fibonacci(lst_resulted)
-                self.num = self.num - 1
                 lst_resulted[self.num-1] = lst_resulted[self.num-2] + lst_resulted[self.num-3]
             return lst_resulted 
 
