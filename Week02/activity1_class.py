@@ -2,9 +2,6 @@ class TestMath:
     def __init__(self, n):
         self.num = n
         self.kept_num = n
-
-    def reset(self):
-        self.num = self.kept_num
     
     def get_factorial(self):
         if self.num > 1:
@@ -13,26 +10,27 @@ class TestMath:
     
         return 1
     
-    def get_fibonacci(self, lst_resulted = None):
+    def fibonacci(self, n, lst_resulted = None):
+        #Preparing a blank array at first
         if lst_resulted is None:
-            self.reset()
-            lst_resulted = self.num * [0]
-        else:
-            self.num = self.num - 1
-            
-        if self.num <= 0:
+            lst_resulted = n * [0]
+        
+        if n <= 0:
             return lst_resulted
-        elif self.num == 1:
+        elif n == 1:
             lst_resulted[0] = 0
             return lst_resulted
-        elif self.num == 2:
+        elif n == 2:
             lst_resulted[0], lst_resulted[1] = 0, 1
             return lst_resulted 
         else:
-            if lst_resulted[self.num-1] == 0:
-                self.get_fibonacci(lst_resulted)
-                lst_resulted[self.num-1] = lst_resulted[self.num-2] + lst_resulted[self.num-3]
-            return lst_resulted 
+            if lst_resulted[n-1] == 0:
+                self.fibonacci(n-1, lst_resulted)
+                lst_resulted[n-1] = lst_resulted[n-2] + lst_resulted[n-3]
+            return lst_resulted  
+    
+    def get_fibonacci(self):
+        return self.fibonacci(self.kept_num, None)
 
 
 num = int(input("Give a number:"))
