@@ -25,7 +25,7 @@ class FileTest:
             print("Line endings converted to Unix style.")
         except Exception as x:
             print(f'Error in convert_line_endings: {x}')
-
+        
     
     def count_char(self, line, char_to_count):
         self.no_of_searching_char = self.no_of_searching_char + line.count(char_to_count)
@@ -35,7 +35,7 @@ def main():
     file_test = FileTest()
     file_test.open_n_print(current_working_directory + "/demo_file.txt")
     print(f"No. of * in this text: {file_test.no_of_searching_char}")
-
+    
 
 if __name__ == "__main__":
     main()
