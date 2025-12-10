@@ -1,3 +1,10 @@
+'''
+Database activities 
+Author: Zaw Min Tun
+Description:
+    This program is to demonstrate the basic ideas of using a database
+'''
+
 import sqlite3
 
 class DatabaseHandler:
