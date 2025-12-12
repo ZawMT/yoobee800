@@ -10,6 +10,8 @@ This developed system is a demonstrated version, so it will be creating the samp
     1. To display the total number of students for MSE800 (as per the sample data)
     2. To list all the teachers info, including name, who are teaching MSE801 (as per the sample data)
 
-The following is the list of required future extentions to make this system usable in the practical scenario. 
+The following is the list of required future extentions to make this system usable in the practical scenario, so all these items are out of the current scope.
     1. To use real data, i.e. to discard the sample data, and to retain data through out all the executions
     2. To provide the options to the user: to create data (for teacher, student or course) or to query data (1. to display the total number of studentes for MSE800 as per the data entered and 2. to list all the teachers who are teaching MSE801 as per the data entered)  
+
+Technical stack applied in this system are Python for development and SQLite3 for database.
