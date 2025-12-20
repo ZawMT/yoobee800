@@ -1,7 +1,8 @@
 from person import Person
 
 class Staff(Person):
-    def __init__(self, staff_id):
+    def __init__(self, id, name, staff_id):
+        super().__init__(id, name)
         self.staff_id = staff_id
 
     def greet(self):
