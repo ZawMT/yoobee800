@@ -14,33 +14,34 @@ This file is a part of a group of files:
 from animal import Animal
 
 
-class Mamal(Animal):
+class Bird(Animal):
     def __init__(self, name, feature):
         super().__init__(name)  # Calling the parent's __init__
         self.feature = feature
 
     def display_info(self):
+        print("I am a Bird")
         super().display_info()  # Calling the parent's display_info
         print(f"My feature: {self.feature}")
 
 
-class Dog(Mamal):
+class Eagle(Bird):
     def __init__(self, name, feature):
         super().__init__(name, feature)
 
     def display_info(self):
         return super().display_info()  # Calling the parent's display_info
 
-    def walk(self):
-        print("As a dog, I prefer to run!!!")
+    def fly(self):
+        print("I am one of the highest flyers!!!")
 
 
-class Cat(Mamal):
+class Penguin(Bird):
     def __init__(self, name, feature):
         super().__init__(name, feature)  # Calling the parent's __init__
 
     def display_info(self):
         return super().display_info()  # Calling the parent's display_info
 
-    def walk(self):
-        print("As a cat, I prefer to jump!!!")
+    def fly(self):
+        print("Why fly? I prefer to walk!!!")

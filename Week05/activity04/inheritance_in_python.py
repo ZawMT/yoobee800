@@ -1,6 +1,20 @@
+'''
+Inheritance in Python
+Author: Zaw Min Tun
+Description:
+    This program is to demonstrate the basic ideas of OOP inheritance in Python
+
+This file is a part of a group of files:
+    person.py where the parent class is defined for person
+    staff.py where the child classes for staff are defined
+    student.py where the child class for student is defined
+    inheritance_in_python.py which is the main file demonstrating the usage of the defined classes above
+'''
+
 from person import Person
 from student import Student
-from staff_academic import StaffAcademic
+from staff import StaffAcademic
+
 
 def main():
     personn1 = Person(1, "John")
@@ -21,6 +35,7 @@ def main():
     teacher.greet(1)
     print("Teacher is greeting as a Person")
     teacher.greet(2)
+
 
 if __name__ == "__main__":
     main()
