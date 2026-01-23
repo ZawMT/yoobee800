@@ -116,12 +116,16 @@ def main():
         # Brining the data into the created table
         for k, v in student_scores.items():
             name = student_names[k]
-            db_handler.run_db_insert('Student', col_names, [k, v, name])
+            db_handler.run_db_insert('Student', col_names, [k, int(v), name])
 
         # Printing all the records
-        print("\nPrinting the table")
+        print("\nPrinting all the students")
         db_handler.run_query_n_print_result(
-            "SELECT * FROM Student", "Students")
+            "SELECT * FROM Student", "All students")
+
+        print("\nPrinting all the students who passed the exam")
+        db_handler.run_query_n_print_result(
+            "SELECT * FROM Student WHERE Score >= 50", "All students who passed the exam")
 
     except Exception as x:
         print(f"Error while processing: {x}")
