@@ -112,11 +112,11 @@ def main():
 
         db_handler = DatabaseHandler("YB_Student_DB")
         create_student_table(db_handler)
-        col_names = ['Student_ID', 'Name', 'Score']
+        col_names = ['Student_ID', 'Score', 'Name']
         # Brining the data into the created table
         for k, v in student_scores.items():
             name = student_names[k]
-            db_handler.run_db_insert('Student', col_names, [k, int(v), name])
+            db_handler.run_db_insert('Student', col_names, [k, v, name])
 
         # Printing all the records
         print("\nPrinting all the students")
