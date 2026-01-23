@@ -107,10 +107,6 @@ def main():
         student_succ = {student_names[k]: student_scores[k]
                         for k, v in student_scores.items() if v >= 50}
 
-       # The line `print("\Merged names and scores")` is attempting to print a string that says
-       # "Merged names and scores". However, there seems to be a typo in the string. The backslash `\`
-       # is an escape character in Python strings, so it should be escaped itself if you want to
-       # include it in the output.
         print("\nMerged names and scores")
         print(student_succ)
 
