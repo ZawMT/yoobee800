@@ -12,7 +12,7 @@ print(student_scores)
 student_succ = {** student_names, **student_scores}
 print(student_succ)
 
-# Merge the names and scores
+# Merge the names and scores only when the score is equal or more than 50
 student_succ = {student_names[k]: student_scores[k]
                 for k, v in student_scores.items() if v >= 50}
 
