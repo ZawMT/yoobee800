@@ -1,0 +1,6 @@
+Without Using the Factory Pattern  (can I develop this project without design pattern - push the project in two version into your GitHub including current and updated version?)
+Discuss what changes would be required if the Factory design pattern were not used.
+    How would the client code need to be modified?
+    What impact would this have on flexibility, maintainability, and scalability?
+
+Answer is inline
