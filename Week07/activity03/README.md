@@ -3,9 +3,9 @@
 
 ## Answer:
 Three design patterns used in the codes are:
-    1. Fatctory pattern (Maker class)
-    2. Singleton pattern (Keeper class)
-    3. Observer pattern (Watcher class)
+1. Fatctory pattern (Maker class)
+2. Singleton pattern (Keeper class)
+3. Observer pattern (Watcher class)
 
 ### Advantages
 
