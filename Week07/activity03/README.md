@@ -10,7 +10,7 @@ Three design patterns used in the codes are:
 ### Advantages
 
 #### Factory pattern: 
-Decoupling: The main code doesn't need to know the names of specific classes (Helper, Friend). 
+Decoupling: The main code doesn't need to know the names of specific classes (Helper, Friend).  
 Consistency: It ensures that every object is created with the correct parameters every time.
 
 #### Singleton pattern: 
