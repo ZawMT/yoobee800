@@ -5,10 +5,10 @@ Analyse the code provided in the attached link and briefly explain how the Facto
     Factory Design Pattern is implemented using NamerFactory class. If the input includes a comma, then it will be assumed the first part (before comma) as lastname, and the remaining part as firstname. If there is no comma in input, the name will be assumed given as first name then first name again. There are two classes for these: LastFirst and FirstFirst. The factory class NamerFactory will choose LastFirst or FirstFirst by checking if the user input has a comma or not.
 
 ## Inout and output
-    Input ⇒ Enter name: Meryl Streep  
-    Output ⇒ Meryl Streep 
-    Input ⇒ Enter name: Streep, Meryl  
-    Output ⇒ Meryl Streep
+    Input (No comma) ⇒ Enter name: Meryl Streep  
+    Output (Just as given) ⇒ Meryl Streep 
+    Input (With comma) ⇒ Enter name: Streep, Meryl  
+    Output (First name then last name - Switched) ⇒ Meryl Streep
 
 ## Note
 Source code is from https://github.com/jwcnmr/jameswcooper/blob/main/Pythonpatterns
