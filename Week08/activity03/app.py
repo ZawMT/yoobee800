@@ -1,5 +1,6 @@
 
 import os
+import sys
 import argparse
 from google import genai
 
@@ -10,9 +11,9 @@ class CVAnalyzer:  # The class to handle CV ingestion and AI-driven critique
         self.client = genai.Client(api_key=api_key)
         self.model_name = model_name
         self.system_instruction = (
-            "Hello, I am a professional Career Coach. Submit your CV for "
-            "clarity, impact, and keyword optimization. I will provide actionable "
-            "bullet points for improvement."
+            "You are a professional Executive Career Coach. "
+            "The user will provide their CV text. You must analyze it immediately. "
+            "Do not ask for more information. Provide suggest 3 high-impact improvements."
         )
 
     # Reads the content of the text file
@@ -41,15 +42,26 @@ class CLIHandler:  # The class to handle Command Line Arguments and user interac
         parser = argparse.ArgumentParser(
             description="Gemini-powered CV Critique Tool")
         parser.add_argument("file", help="Path to your CV text file")
-        parser.add_argument("--key", help="Your Gemini API Key", required=True)
 
         args = parser.parse_args()
 
+        # Read API Key
+        api_key = os.getenv("GEMINI_API_KEY")
+
+        if not api_key:
+            print("Error: GEMINI_API_KEY not found in environment.")
+            print("Please ensure your .env file is loaded or the -e flag is used.")
+            sys.exit(1)
+
         # Initialize the analyzer
-        analyzer = CVAnalyzer(api_key=args.key)
+        analyzer = CVAnalyzer(api_key=api_key)
+
+        # Read CV Folder
+        cv_folder = os.getenv("CV_FOLDER", "")
 
         print(f"--- Loading {args.file} ---")
-        content = analyzer.load_file(args.file)
+        file_path = os.path.join(cv_folder, args.file)
+        content = analyzer.load_file(file_path)
 
         if content.startswith("Error"):
             print(content)
