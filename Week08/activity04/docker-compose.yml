@@ -1,0 +1,25 @@
+services:
+  db:
+    image: python:3.11
+    volumes:
+      - cars-data:/data # Docker volume 'cars-data' is created (Docker will mount that volume at the path "/data" in the container)
+      - ./db:/db # Bind mount: maps local ./db folder to the path /db in the container so cli.py can access db_service.py
+    working_dir: /db 
+    # Optional: To keep the db container running in the background.
+    # Useful when starting with "docker compose up -d db" or inspecting with "docker compose exec db sh".
+    # Prevents the container from exiting immediately after start.
+    # command: tail -f /dev/null
+
+  cli:
+    image: python:3.11
+    stdin_open: true # Allow interactive input() in the CLI application
+    tty: true # Teletypewrite: creates interactive terminal
+    volumes:
+      - cars-data:/data
+      - ./cli:/app
+      - ./db:/db
+    working_dir: /app
+    command: python cli.py # Runs the CLI application when the container starts
+
+volumes:
+  cars-data:
