@@ -1,0 +1,39 @@
+ZAW MIN TUN Senior Full-Stack Software Engineer Email: mg.zawmintun@gmail.com | Location: Auckland, NZ
+
+SUMMARY Principal-level Software Engineer with over 15 years of experience delivering enterprise-grade solutions. Expert in backend architecture using C#/.NET and Python, with a proven track record of migrating legacy systems to modern microservices. Specialist in frontend development with ReactJS and deep database optimization across Microsoft SQL Server and Oracle environments.
+
+TECHNICAL SKILLS
+
+Languages: C# (.NET 8/Core), Python (FastAPI, Django), JavaScript/TypeScript.
+
+Frontend: ReactJS, Redux, Tailwind CSS, Modern UI/UX implementation.
+
+Backend: Microservices, RESTful APIs, Entity Framework, RabbitMQ.
+
+Databases: MS SQL Server (Performance Tuning, T-SQL), Oracle (PL/SQL), PostgreSQL.
+
+DevOps: Docker, Kubernetes, Azure DevOps, CI/CD Pipelines, Jenkins.
+
+PROFESSIONAL EXPERIENCE
+
+Senior Developer | CloudSystems Inc. January 2021 – Present
+
+Architected the migration of a legacy monolithic ERP into a scalable microservices architecture using C# and ASP.NET Core, improving system uptime to 99.99%.
+
+Engineered Python-based ETL pipelines using FastAPI to automate complex data flows, resulting in a 40% reduction in manual processing time.
+
+Optimized mission-critical Oracle PL/SQL procedures, reducing query execution time by 25% for high-traffic financial reporting.
+
+Led the development of a real-time data visualization dashboard in ReactJS, integrating live feeds from MS SQL Server for executive decision-making.
+
+Software Developer | DataFlow Solutions June 2018 – December 2020
+
+Developed and maintained robust web applications using C# and ReactJS, focusing on high-availability financial services.
+
+Administered large-scale Microsoft SQL databases, performing regular schema optimizations and security audits.
+
+Implemented automated unit testing and integration testing for Python backend services, increasing code coverage by 30%.
+
+EDUCATION
+
+Master of Software Engineering | Yoobee College, Auckland

@@ -1,0 +1,40 @@
+Zaw Min Tun 
+DEVELOPER Full-Stack Software Engineer Email: mg.zawmintun@gmail.com | Location: Auckland
+
+SUMMARY Versatile Software Engineer with 15+ years of experience specializing in backend architecture and modern frontend frameworks. Proficient in building scalable microservices with C# and Python, and crafting responsive UIs with ReactJS. Strong database background in both Microsoft SQL Server and Oracle.
+
+TECHNICAL SKILLS
+
+Languages: C# (.NET 6/8), Python (FastAPI, Flask, Django), JavaScript (ES6+).
+
+Frontend: ReactJS, Redux, HTML5, CSS3, Tailwind CSS.
+
+Backend: ASP.NET Core, Entity Framework, RESTful APIs.
+
+Databases: Microsoft SQL Server (T-SQL), Oracle (PL/SQL), PostgreSQL.
+
+Tools: Docker, Git, Azure DevOps, Jenkins.
+
+PROFESSIONAL EXPERIENCE
+
+Senior Developer | CloudSystems Inc. January 2021 – Present
+
+Lead the migration of a legacy monolithic application to a microservices architecture using C# and ASP.NET Core.
+
+Developed high-performance data processing scripts in Python to automate ETL tasks, reducing manual entry by 40%.
+
+Optimized complex Oracle queries and stored procedures, improving report generation speed by 25%.
+
+Built a dynamic dashboard using ReactJS to visualize real-time inventory data from Microsoft SQL Server.
+
+Software Developer | DataFlow Solutions June 2018 – December 2020
+
+Maintained and enhanced web applications using C# and JavaScript.
+
+Managed large-scale Microsoft SQL databases, ensuring 99.9% uptime and data integrity.
+
+Collaborated with the UI/UX team to implement new features in ReactJS.
+
+Wrote technical documentation and unit tests for backend Python services.
+
+EDUCATION Master of Software Engineering, Yoobee College, Auckland
