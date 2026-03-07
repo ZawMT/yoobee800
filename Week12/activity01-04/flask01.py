@@ -49,16 +49,23 @@ def welcomemember(name, id):
 @app.route("/info")
 def info():
     '''
-    An info page
+    A function that returns a string with some HTML tags
     '''
-    html_str = """
-    <p>This is a page trying some HTML tags</p>
-    <br />
-    To know more about flask, please visit
-    """
+
     url = "https://flask.palletsprojects.com/en/stable/quickstart/"
-    html_str += f"<a href=\"{url}\">Flask Quickstart</a>"
-    html_str += '<br />This is the logo of Flask<br /> <br /> <br /> <img src="/static/flask.jpeg" alt="Flask Logo" width="200"/>'
+
+    html_str = f"""<html style=\"background-color:green\">
+    <p>This is a page trying some HTML tags</p>
+
+    To know more about flask, please visit and read:
+    <a href="{url}">Flask Quickstart</a>
+
+    <br><br>
+    This is the logo of Flask
+    <br><br>
+
+    <img src="/static/flask.jpeg" alt="Flask Logo" width="200"></html>
+    """
 
     return html_str
 
