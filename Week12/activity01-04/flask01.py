@@ -55,6 +55,14 @@ def info():
     url = "https://flask.palletsprojects.com/en/stable/quickstart/"
 
     html_str = f"""<html style=\"background-color:green\">
+    <head>
+    <title>Flask Info</title>
+    <style>
+        body {{
+            color: red;
+        }}
+    </style>
+    </head>
     <p>This is a page trying some HTML tags</p>
 
     To know more about flask, please visit and read:
