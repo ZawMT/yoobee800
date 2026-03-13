@@ -1,7 +1,9 @@
 '''
 Testing Flask
 '''
-from flask import Flask
+from flask import Flask, request
+import os
+import base64
 
 app = Flask(__name__)
 
@@ -72,7 +74,27 @@ def info():
     This is the logo of Flask
     <br><br>
 
-    <img src="/static/flask.jpeg" alt="Flask Logo" width="200"></html>
+    <img src="/static/flask.jpeg" alt="Flask Logo" width="200">
+
+    <br><br>
+    <h2>Upload an Image</h2>
+    <input type="file" name="image" accept="image/*" onchange="showImage(this)">
+    <br><br>
+    <img id="preview" src="" style="display:none; max-width:600px;">
+    <script>
+        function showImage(input) {{
+            const file = input.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {{
+                const img = document.getElementById('preview');
+                img.src = e.target.result;
+                img.style.display = 'block';
+            }};
+            reader.readAsDataURL(file);
+        }}
+    </script>
+    </html>
     """
 
     return html_str
