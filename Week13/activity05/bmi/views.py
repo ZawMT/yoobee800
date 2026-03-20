@@ -46,13 +46,12 @@ def get_diet_n_exercise_plan(gender, age, height, weight, months=1):
     api_key = os.getenv("GEMINI_API_KEY")
 
     client = genai.Client(api_key=api_key)
-    client.config = {
+    config = {
         "temperature": 0.7,
         "topP": 0.95,
         "topK": 40,
         "maxOutputTokens": 1000
     }
-    # client.configure(config)
 
     prompt = (
         f"Create a {months}-month diet and exercise plan for a {age}-year-old {gender} "
@@ -61,6 +60,7 @@ def get_diet_n_exercise_plan(gender, age, height, weight, months=1):
 
     response = client.models.generate_content(
         model="gemini-2.5-flash",
+        config=config,
         contents=prompt
     )
     return markdown.markdown(response.text)

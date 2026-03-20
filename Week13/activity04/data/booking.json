@@ -1,0 +1,22 @@
+[
+  {
+    "id": "7113632b-7aef-4cb6-b198-cc98bf357ce9",
+    "teacher_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+    "teacher_name": "Alex Brown",
+    "student_id": "S123123",
+    "student_name": "Glenda Holmes",
+    "reason": "To discuss about thesis",
+    "date": "2026-03-24",
+    "slot": 1
+  },
+  {
+    "id": "a4240b9a-19d0-4c42-818c-a200c3e5d2d8",
+    "teacher_id": "b2c3d4e5-f6a7-8901-bcde-f01234567891",
+    "teacher_name": "Catherine Davis",
+    "student_id": "S223441",
+    "student_name": "Irene Johnson",
+    "reason": "Sharing medical info",
+    "date": "2026-03-24",
+    "slot": 3
+  }
+]

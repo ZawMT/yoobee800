@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Make a Booking</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f4f6f9; color: #333; }
+
+    header {
+      background: #2c3e50; color: white; padding: 16px 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    header h1 { font-size: 1.4rem; }
+    header a { color: #aed6f1; text-decoration: none; font-size: 0.9rem; }
+    header a:hover { color: white; }
+
+    .container { max-width: 960px; margin: 32px auto; padding: 0 16px; }
+
+    .card {
+      background: white; border-radius: 8px; padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px;
+    }
+    .card h2 { font-size: 1.1rem; margin-bottom: 16px; color: #2c3e50; }
+
+    select {
+      width: 100%; padding: 10px 12px; border: 1px solid #ccc;
+      border-radius: 6px; font-size: 1rem; cursor: pointer;
+    }
+
+    .week-nav {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 16px;
+    }
+    .week-nav button {
+      background: #2c3e50; color: white; border: none;
+      padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.9rem;
+    }
+    .week-nav button:hover { background: #34495e; }
+    .week-nav span { font-weight: bold; font-size: 0.95rem; }
+
+    .slot-legend {
+      font-size: 0.8rem; color: #666; margin-bottom: 12px;
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-box {
+      width: 16px; height: 16px; border-radius: 3px;
+      border: 1px solid #ccc;
+    }
+
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    .day-col { display: flex; flex-direction: column; gap: 8px; }
+    .day-header {
+      text-align: center; font-weight: bold; font-size: 0.85rem;
+      color: #555; padding-bottom: 6px;
+      border-bottom: 2px solid #eee;
+    }
+    .day-header .date-str { font-size: 0.75rem; color: #888; font-weight: normal; }
+
+    .slot-btn {
+      width: 100%; padding: 8px 4px; border: 1px solid #27ae60;
+      background: #eafaf1; color: #1e8449; border-radius: 5px;
+      font-size: 0.78rem; text-align: center; cursor: pointer;
+      transition: background 0.15s;
+    }
+    .slot-btn:hover { background: #27ae60; color: white; }
+    .slot-btn.selected { background: #27ae60; color: white; border-color: #1e8449; }
+    .no-slots { color: #aaa; font-size: 0.8rem; text-align: center; padding: 8px 0; }
+    .loading-slots { color: #aaa; font-size: 0.8rem; text-align: center; padding: 8px 0; }
+
+    /* Modal */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45); z-index: 100;
+      justify-content: center; align-items: center;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal {
+      background: white; border-radius: 10px; padding: 28px;
+      width: 420px; max-width: 95vw;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    }
+    .modal h3 { margin-bottom: 6px; color: #2c3e50; }
+    .booking-summary {
+      background: #f0f4f8; border-radius: 6px; padding: 10px 14px;
+      margin-bottom: 18px; font-size: 0.9rem; color: #555;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label { display: block; font-size: 0.85rem; margin-bottom: 4px; color: #555; }
+    .form-group input, .form-group textarea {
+      width: 100%; padding: 9px 11px; border: 1px solid #ccc;
+      border-radius: 6px; font-size: 0.95rem;
+    }
+    .form-group textarea { resize: vertical; min-height: 70px; }
+    .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+    .btn-confirm {
+      flex: 1; background: #27ae60; color: white; border: none;
+      padding: 10px; border-radius: 6px; font-size: 1rem; cursor: pointer;
+    }
+    .btn-confirm:hover { background: #1e8449; }
+    .btn-cancel {
+      flex: 1; background: #eee; color: #333; border: none;
+      padding: 10px; border-radius: 6px; font-size: 1rem; cursor: pointer;
+    }
+    .btn-cancel:hover { background: #ddd; }
+
+    .alert {
+      padding: 12px 16px; border-radius: 6px; margin-bottom: 16px;
+      font-size: 0.9rem; display: none;
+    }
+    .alert.success { background: #eafaf1; color: #1e8449; border: 1px solid #27ae60; display: block; }
+    .alert.error { background: #fdf2f2; color: #c0392b; border: 1px solid #e74c3c; display: block; }
+
+    .placeholder-msg { color: #aaa; text-align: center; padding: 24px 0; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Appointment Scheduler</h1>
+  <a href="{% url 'bookinginfo' %}">View All Bookings &rarr;</a>
+</header>
+
+<div class="container">
+
+  <div id="alert-box" class="alert"></div>
+
+  <div class="card">
+    <h2>1. Select a Teacher</h2>
+    <select id="teacher-select">
+      <option value="">-- Choose a teacher --</option>
+    </select>
+  </div>
+
+  <div class="card" id="slot-section" style="display:none;">
+    <h2>2. Select an Available Slot</h2>
+
+    <div class="week-nav">
+      <button id="prev-week">&larr; Previous Week</button>
+      <span id="week-label"></span>
+      <button id="next-week">Next Week &rarr;</button>
+    </div>
+
+    <div class="slot-legend">
+      <div class="legend-item">
+        <div class="legend-box" style="background:#eafaf1; border-color:#27ae60;"></div>
+        <span>Available</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-box" style="background:#27ae60;"></div>
+        <span>Selected</span>
+      </div>
+    </div>
+
+    <div class="week-grid" id="week-grid"></div>
+  </div>
+
+</div>
+
+<!-- Booking Modal -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <h3>Confirm Booking</h3>
+    <div class="booking-summary" id="booking-summary"></div>
+
+    <div class="form-group">
+      <label>Student ID</label>
+      <input type="text" id="student-id" placeholder="e.g. S12345">
+    </div>
+    <div class="form-group">
+      <label>Student Name</label>
+      <input type="text" id="student-name" placeholder="Full name">
+    </div>
+    <div class="form-group">
+      <label>Reason for Appointment</label>
+      <textarea id="reason" placeholder="Briefly describe the reason..."></textarea>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" id="modal-cancel">Cancel</button>
+      <button class="btn-confirm" id="modal-confirm">Confirm Booking</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const TEACHERS = {{ teachers|safe }};
+  const SLOT_TIMES = {{ slot_times|safe }};
+
+  let selectedTeacher = null;
+  let weekOffset = 0;
+  let selectedSlot = null; // {date, slot, day_name}
+
+  // Populate teacher dropdown
+  const teacherSelect = document.getElementById('teacher-select');
+  TEACHERS.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t.id;
+    opt.textContent = t.teacher_name;
+    teacherSelect.appendChild(opt);
+  });
+
+  teacherSelect.addEventListener('change', () => {
+    const id = teacherSelect.value;
+    selectedTeacher = TEACHERS.find(t => t.id === id) || null;
+    weekOffset = 0;
+    if (selectedTeacher) {
+      document.getElementById('slot-section').style.display = 'block';
+      loadSlots();
+    } else {
+      document.getElementById('slot-section').style.display = 'none';
+    }
+  });
+
+  document.getElementById('prev-week').addEventListener('click', () => {
+    weekOffset--;
+    loadSlots();
+  });
+  document.getElementById('next-week').addEventListener('click', () => {
+    weekOffset++;
+    loadSlots();
+  });
+
+  function slotLabel(slotNum) {
+    const t = SLOT_TIMES[String(slotNum)];
+    return t ? `${t.start}–${t.end}` : `Slot ${slotNum}`;
+  }
+
+  function formatDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    return d.toLocaleDateString('en-NZ', { day: 'numeric', month: 'short' });
+  }
+
+  function weekRangeLabel(week) {
+    if (!week || week.length === 0) return '';
+    const first = formatDate(week[0].date);
+    const last = formatDate(week[week.length - 1].date);
+    return `${first} – ${last}`;
+  }
+
+  async function loadSlots() {
+    if (!selectedTeacher) return;
+    const grid = document.getElementById('week-grid');
+    grid.innerHTML = '<div class="loading-slots" style="grid-column:1/-1">Loading...</div>';
+
+    const res = await fetch(`/api/slots/?teacher_id=${selectedTeacher.id}&week_offset=${weekOffset}`);
+    const data = await res.json();
+
+    document.getElementById('week-label').textContent = weekRangeLabel(data.week);
+
+    grid.innerHTML = '';
+    data.week.forEach(day => {
+      const col = document.createElement('div');
+      col.className = 'day-col';
+      col.innerHTML = `
+        <div class="day-header">
+          ${day.day_name}<br>
+          <span class="date-str">${formatDate(day.date)}</span>
+        </div>
+      `;
+      if (day.slots.length === 0) {
+        const msg = document.createElement('div');
+        msg.className = 'no-slots';
+        msg.textContent = 'No slots';
+        col.appendChild(msg);
+      } else {
+        day.slots.forEach(slotNum => {
+          const btn = document.createElement('button');
+          btn.className = 'slot-btn';
+          btn.textContent = slotLabel(slotNum);
+          btn.dataset.date = day.date;
+          btn.dataset.dayName = day.day_name;
+          btn.dataset.slot = slotNum;
+          btn.addEventListener('click', () => openModal(day.date, day.day_name, slotNum, btn));
+          col.appendChild(btn);
+        });
+      }
+      grid.appendChild(col);
+    });
+  }
+
+  function openModal(date, dayName, slotNum, btn) {
+    selectedSlot = { date, dayName, slot: slotNum };
+    document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+
+    document.getElementById('booking-summary').innerHTML =
+      `<strong>Teacher:</strong> ${selectedTeacher.teacher_name}<br>
+       <strong>Date:</strong> ${dayName}, ${formatDate(date)}<br>
+       <strong>Time:</strong> ${slotLabel(slotNum)}`;
+
+    document.getElementById('student-id').value = '';
+    document.getElementById('student-name').value = '';
+    document.getElementById('reason').value = '';
+    document.getElementById('modal-overlay').classList.add('active');
+  }
+
+  document.getElementById('modal-cancel').addEventListener('click', () => {
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+    selectedSlot = null;
+  });
+
+  document.getElementById('modal-confirm').addEventListener('click', async () => {
+    const studentId = document.getElementById('student-id').value.trim();
+    const studentName = document.getElementById('student-name').value.trim();
+    const reason = document.getElementById('reason').value.trim();
+
+    if (!studentId || !studentName || !reason) {
+      showAlert('Please fill in all fields.', 'error');
+      document.getElementById('modal-overlay').classList.remove('active');
+      return;
+    }
+
+    const payload = {
+      teacher_id: selectedTeacher.id,
+      teacher_name: selectedTeacher.teacher_name,
+      student_id: studentId,
+      student_name: studentName,
+      reason: reason,
+      date: selectedSlot.date,
+      slot: selectedSlot.slot,
+    };
+
+    const res = await fetch('/api/book/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const result = await res.json();
+
+    document.getElementById('modal-overlay').classList.remove('active');
+
+    if (result.success) {
+      showAlert(`Booking confirmed! ID: ${result.booking_id}`, 'success');
+      loadSlots();
+    } else {
+      showAlert(`Error: ${result.error}`, 'error');
+    }
+    selectedSlot = null;
+  });
+
+  function showAlert(msg, type) {
+    const box = document.getElementById('alert-box');
+    box.textContent = msg;
+    box.className = `alert ${type}`;
+    setTimeout(() => { box.className = 'alert'; }, 5000);
+  }
+</script>
+
+</body>
+</html>
