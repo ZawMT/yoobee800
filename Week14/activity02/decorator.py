@@ -13,21 +13,9 @@ def add(a, b):
 
 
 @log_decorator
-def subtract(a, b):
-    return a - b
-
-
-@log_decorator
 def multiply(a, b):
     return a * b
 
 
-@log_decorator
-def divide(a, b):
-    return a / b
-
-
 add(3, 5)
-subtract(10, 4)
 multiply(2, 6)
-divide(15, 3)
