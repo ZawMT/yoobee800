@@ -3,7 +3,11 @@ Refine and extend your ongoing MSE800.2 project by incorporating the use of Pyth
 
 ### Usage in the assessment project
 Python's built-in decorator, @classmethod, is used as follows:
-```class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+
+```
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
