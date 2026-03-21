@@ -1,0 +1,12 @@
+add(10, 3) = 13
+subtract(10, 3) = 7
+multiply(10, 3) = 30
+divide(10, 3) = 3.3333333333333335  [0.000001s]
+divide(10, 0) => ZeroDivisionError
+divide(12321, 2) = 6160.5  [0.000001s]
+add(10, 3) = 13
+subtract(10, 3) = 7
+multiply(10, 3) = 30
+divide(10, 3) = 3.3333333333333335  [0.000001s]
+divide(10, 0) => ZeroDivisionError
+divide(12321, 2) = 6160.5  [0.000000s]
