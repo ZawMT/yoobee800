@@ -3,8 +3,7 @@ Refine and extend your ongoing MSE800.2 project by incorporating the use of Pyth
 
 ### Usage in the assessment project
 Python's built-in decorator, @classmethod, is used as follows:
-`
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+`class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
@@ -12,7 +11,6 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         token["username"] = user.username
         token["email"] = user.email
 
-        return token
-`
+        return token`
 
 The class TokenObtainPairSerializer (JTW framework) already has a function called get_token, but that function doesn't include some info (here, username and email) in the return information. So the function is modified for that part - to include those info in the return - using help of decorator.
